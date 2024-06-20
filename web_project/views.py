@@ -1,7 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 def homepage(request):
-    return render(request,"index.html")
+    data={
+        "title":"Love"
+    }
+    return render(request,"index.html",data)
 
 def about(request):
     return HttpResponse("This is About page")
