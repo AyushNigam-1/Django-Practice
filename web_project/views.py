@@ -2,7 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 def homepage(request):
     data={
-        "title":"Love"
+        "title":"Love",
+        "list":["Ayush","Ayush","Ayush"]
     }
     return render(request,"index.html",data)
 
