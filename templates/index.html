@@ -8,8 +8,17 @@
 </head>
 
 <body>
-    {% for n in list %}
-    <h1>This is my {{n}}</h1>
+    <h1>hey lol </h1>
+    <!-- {{clist}} -->
+    {% if title == "wow" %}
+    <div> yes working </div>
+    {% endif %}
+
+
+    {% for n in clist %}
+    <!-- {% if n.age == 19 %} -->
+    <div>This is my {{n.age}}</div>
+    <!-- {% endif %} -->
     {% endfor %}
 </body>
 
