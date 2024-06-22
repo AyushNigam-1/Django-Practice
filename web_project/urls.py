@@ -18,8 +18,8 @@ from django.contrib import admin
 from django.urls import path
 from web_project import views 
 urlpatterns = [
-    path('',views.homepage),
+    path('',views.homepage, name="home"),
     path('admin/', admin.site.urls),
-    path("about/",views.about),
+    path("about/",views.about , name="about"),
     path("course/<int:courseid>",views.course)
 ]
