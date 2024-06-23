@@ -12,7 +12,7 @@ def homepage(request):
     return render(request,"index.html",data)
 
 def about(request):
-    return HttpResponse("This is About page")
+    return render(request,"about.html")
 
 def course(request, courseid):
     return HttpResponse(courseid)
