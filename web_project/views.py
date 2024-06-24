@@ -1,22 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 def homepage(request):
-    # data={
-    #     "title":"wow",
-    #     "clist":[
-    #         {"name":"Ayush" , "age":"16"},
-    #         {"name":"Ayush","age":"18"},
-    #         {"name":"Ayush","age":"19"}
-    #         ]
-    # }
-    print(request.GET['ipt'])
-    print(request.GET.get('ipt'))
-    # try:
-    #     ipt1 = request.GET['ipt']
-    #     ipt2 = request.GET['ipt2']
-    #     print("result" ,ipt1+ipt2)
-    # except:
-    #     pass
+    if request.method == 'POST':
+        n1 = int(request.POST.get("ipt1"))
+        n2 = int(request.POST.get("ipt2"))
+        print(n1+n2)
     return render(request,"index.html")
 
 def about(request):

@@ -11,7 +11,8 @@
     {{ request.path }}
     <a href="{% url 'about' %}">About</a>
     <div>Lol</div>
-    <form>
+    <form method="post">
+        {% csrf_token %}
         <input type="text" name="ipt1">
         <input type="text" name="ipt2">
         <button type="submit">Submit karo</button>
