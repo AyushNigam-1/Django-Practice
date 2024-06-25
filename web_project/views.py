@@ -1,5 +1,5 @@
 from django.http import HttpResponse , HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 def homepage(request):
     url=""
     if request.method == 'POST':
@@ -17,3 +17,10 @@ def about(request):
 
 def course(request, courseid):
     return HttpResponse(courseid)
+
+def formData(request):
+    if request.method == 'GET':
+        output = request.GET.get("ipt1")
+        
+    url = "/about?output={}".format(output)
+    return redirect(url)

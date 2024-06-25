@@ -21,5 +21,6 @@ urlpatterns = [
     path('',views.homepage, name="home"),
     path('admin/', admin.site.urls),
     path("about",views.about , name="about"),
+    path("formdata",views.formData , name="formdata"),
     path("course/<int:courseid>",views.course,name="course")
 ]
