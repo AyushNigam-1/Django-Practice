@@ -13,10 +13,10 @@
     <div>Lol</div>
     <form action="{% url 'formdata' %}">
         {% csrf_token %}
-        <input type="text" name="ipt1">
-        <input type="text" name="ipt2">
-        <button type="submit">Submit karo</button>
         {{output}}
+        <!-- <input type="text" name="ipt1">
+        <input type="text" name="ipt2"> -->
+        <button type="submit">Submit karo</button>
     </form>
 </body>
 
