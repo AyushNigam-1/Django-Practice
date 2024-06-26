@@ -28,7 +28,7 @@ def formData(request):
     if request.method == 'GET':
         output = request.GET.get("num1")
         # print ("output --> {}".format(output))
-        if( output == "1"):
+        if(output == "1"):
             return render(request ,"index.html" , {"error":True})
         
     url = "/about?output={}".format(output)
