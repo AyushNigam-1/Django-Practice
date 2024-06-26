@@ -11,6 +11,9 @@
     {{ request.path }}
     <a href="{% url 'about' %}">About</a>
     <div>Lol</div>
+    {% if error %}
+    <div> error </div>
+    {% endif %}
     <form action="{% url 'formdata' %}">
         {% csrf_token %}
         {{output}}

@@ -26,7 +26,10 @@ def course(request, courseid):
 
 def formData(request):
     if request.method == 'GET':
-        output = request.GET.get("ipt1")
+        output = request.GET.get("num1")
+        # print ("output --> {}".format(output))
+        if( output == "1"):
+            return render(request ,"index.html" , {"error":True})
         
     url = "/about?output={}".format(output)
     return redirect(url)
