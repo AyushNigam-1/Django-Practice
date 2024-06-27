@@ -16,9 +16,9 @@
     {% endif %}
     <form action="{% url 'formdata' %}">
         {% csrf_token %}
-        {{output}}
-        <!-- <input type="text" name="ipt1">
-        <input type="text" name="ipt2"> -->
+        {%for item in output %}
+        <div>{{item.title}}</div>
+        {% endfor %}
         <button type="submit">Submit karo</button>
     </form>
 </body>

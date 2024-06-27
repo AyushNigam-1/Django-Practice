@@ -1,11 +1,14 @@
 from django.http import HttpResponse , HttpResponseRedirect
 from django.shortcuts import render , redirect
 from .forms import usersForm
+from service.models import Service
 def homepage(request):
+    serviceData = Service.objects.all()
+    print(serviceData)
     url=""
     fo = usersForm()
     data = {
-    "output":fo    
+    "output":serviceData    
     }
     print(data)
     if request.method == 'POST':
