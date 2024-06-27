@@ -3,7 +3,7 @@ from django.shortcuts import render , redirect
 from .forms import usersForm
 from service.models import Service
 def homepage(request):
-    serviceData = Service.objects.all()
+    serviceData = Service.objects.all().order_by('-service_title')[2:5]
     print(serviceData)
     url=""
     fo = usersForm()
