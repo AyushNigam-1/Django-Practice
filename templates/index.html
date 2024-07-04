@@ -17,7 +17,8 @@
     <form action="{% url 'formdata' %}">
         {% csrf_token %}
         {%for item in output %}
-        <div>{{item.title}}</div>
+        <div>{{item.title | safe}}</div>
+        <div>{{item.title | lower}}</div>
         {% endfor %}
         <button type="submit">Submit karo</button>
     </form>
