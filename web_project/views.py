@@ -48,8 +48,8 @@ def item(request , id):
 
 def item(request , id):
     record = Service.objects.get(id = id)
-    # record = Service.objects.filter(service_title = id)
-    # print(record)
+    record = Service.objects.filter(service_title = id)
+    print(record)
     output = {
         "record":record
     }
