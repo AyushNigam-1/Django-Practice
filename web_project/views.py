@@ -2,6 +2,7 @@ from django.http import HttpResponse , HttpResponseRedirect
 from django.shortcuts import render , redirect
 from .forms import usersForm
 from service.models import Service
+from news.models import News
 def homepage(request):
     serviceData = Service.objects.all().order_by('-service_title')
     print(serviceData)
@@ -36,3 +37,21 @@ def formData(request):
         
     url = "/about?output={}".format(output)
     return redirect(url)
+
+def item(request , id):
+    record = Service.objects.get(id = id)
+    print(record)
+    output = {
+        "record":record
+    }
+    return render(request , "about.html",output)
+
+def item(request , id):
+    record = Service.objects.get(id = id)
+    # record = Service.objects.filter(service_title = id)
+    # print(record)
+    output = {
+        "record":record
+    }
+    return render(request , "about.html",output)
+
