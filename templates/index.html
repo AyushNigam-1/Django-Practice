@@ -8,23 +8,37 @@
 </head>
 
 <body>
-    {{ request.path }}
+    <!-- {{ request.path }}
     <a href="{% url 'about' %}">About</a>
     <div>Lol</div>
     {% if error %}
     <div> error </div>
-    {% endif %}
+    {% endif %} -->
     <form action="{% url 'formdata' %}">
         {% csrf_token %}
-        {{output}}
+        <!-- {{output}} -->
         {% for item in output %}
-        <a href="/item/{{item.slug}}">{{item.service_title | safe}}</a>
+        <div>
+            {{item.service_title}}
+        </div>
+
+        <!-- <a href="/item/{{item.slug}}">{{item.service_title | safe}}</a>
         <div>{{item.service_title | lower}}</div>
         <div>{{item.service_title | upper}}</div>
         <div>{{item.service_title | first}}</div>
-        <div>{{item.service_title | length}}</div>
+        <div>{{item.service_title | length}}</div> -->
         {% endfor %}
-        <button type="submit">Submit karo</button>
+        {% if output.has_previous %}
+        <a href="/?page={{output.previous_page_number}}">Previous</a>
+        {% endif %}
+        {% for item in pages %}
+        <a href="/?page={{item}}"> {{item}} </a>
+        {% endfor %}
+
+        {% if output.has_next %}
+        <a href="/?page={{output.next_page_number}}">Next</a>
+        {% endif %}
+        <!-- <button type="submit">Submit karo</button> -->
     </form>
 </body>
 

@@ -3,13 +3,20 @@ from django.shortcuts import render , redirect
 from .forms import usersForm
 from service.models import Service
 from news.models import News
+from django.core.paginator import Paginator
 def homepage(request):
     serviceData = Service.objects.all().order_by('-service_title')
-    print(serviceData)
+    paginator = Paginator(serviceData,2)
+    page_num = request.GET.get('page')
+    final_dt = paginator.get_page(page_num)
+    totalpage = final_dt.paginator.num_pages
+    print(final_dt)
     url=""
     fo = usersForm()
     data = {
-    "output":serviceData    
+    "output":final_dt ,
+    "count":totalpage,
+    "pages":[n+1 for n in range(totalpage)]   
     }
     print(data)
     if request.method == 'POST':
@@ -48,7 +55,7 @@ def item(request , slug):
 
 def item(request , id):
     record = Service.objects.get(id = id)
-    record = Service.objects.filter(service_title = id)
+    # record = Service.objects.filter(service_title = id)
     print(record)
     output = {
         "record":record
