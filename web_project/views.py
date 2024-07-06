@@ -38,8 +38,8 @@ def formData(request):
     url = "/about?output={}".format(output)
     return redirect(url)
 
-def item(request , id):
-    record = Service.objects.get(id = id)
+def item(request , slug):
+    record = Service.objects.get(slug = slug)
     print(record)
     output = {
         "record":record
