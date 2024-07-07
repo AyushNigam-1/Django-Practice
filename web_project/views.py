@@ -4,6 +4,16 @@ from .forms import usersForm
 from service.models import Service
 from news.models import News
 from django.core.paginator import Paginator
+
+def userpage(request):
+    print("called" , request.POST.get('icon'))
+    if request.method == 'POST':
+        icon = request.POST.get('icon')
+        title = request.POST.get('title')
+        userdetails = Service(service_title = title , service_icon = icon)
+        userdetails.save()
+    return render(request , 'userForm.html')
+
 def homepage(request):
     serviceData = Service.objects.all().order_by('-service_title')
     paginator = Paginator(serviceData,2)

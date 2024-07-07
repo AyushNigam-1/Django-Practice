@@ -34,7 +34,6 @@
         {% for item in pages %}
         <a href="/?page={{item}}"> {{item}} </a>
         {% endfor %}
-
         {% if output.has_next %}
         <a href="/?page={{output.next_page_number}}">Next</a>
         {% endif %}

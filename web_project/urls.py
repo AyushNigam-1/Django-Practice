@@ -23,5 +23,6 @@ urlpatterns = [
     path("about",views.about , name="about"),
     path("formdata",views.formData , name="formdata"),
     path("course/<int:courseid>",views.course,name="course"),
-    path("item/<int:id>",views.item,name="item")
+    path("item/<int:id>",views.item,name="item"),
+    path("form",views.userpage,name="form")
 ]
