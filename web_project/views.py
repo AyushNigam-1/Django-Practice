@@ -4,7 +4,7 @@ from .forms import usersForm
 from service.models import Service
 from news.models import News
 from django.core.paginator import Paginator
-
+from django.core.mail import send_mail , EmailMultiAlternatives
 def userpage(request):
     print("called" , request.POST.get('icon'))
     if request.method == 'POST':
@@ -15,6 +15,22 @@ def userpage(request):
     return render(request , 'userForm.html')
 
 def homepage(request):
+    send_mail(
+        "Testing mail",
+        "Here is the message",
+        "ayushnigam843@gmail.com",
+        ["ayushnigam518@gmail.com"],
+        fail_silently=False 
+    )
+    mail = EmailMultiAlternatives(
+        "Testing mail",
+        "<h1>Wow bro<h2>",
+        "ayushnigam843@gmail.com",
+        ["ayushnigam518@gmail.com","ayushnigam35@gmail.com"],
+        fail_silently=False 
+    )
+    mail.content_subtype = "html"
+    mail.send()
     serviceData = Service.objects.all().order_by('-service_title')
     paginator = Paginator(serviceData,2)
     page_num = request.GET.get('page')

@@ -129,3 +129,9 @@ STATICFILES_DIRS = [
 ]
 MEDIA_ROOT = BASE_DIR /"media"
 MEDIA_URL = "/media/"
+
+EMAIL_HOST = "smpt.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'ayushnigam843@gmail.com'
+EMAIL_HOST_PASSWORD= "Ayush@123"
+EMAIL_USER_TLS = True
