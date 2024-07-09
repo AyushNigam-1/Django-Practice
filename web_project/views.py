@@ -1,7 +1,7 @@
 from django.http import HttpResponse , HttpResponseRedirect
 from django.shortcuts import render , redirect
 from .forms import usersForm
-from service.models import Service
+from service.models import Service , Car
 from news.models import News
 from django.core.paginator import Paginator
 from django.core.mail import send_mail , EmailMultiAlternatives
@@ -87,4 +87,15 @@ def item(request , id):
         "record":record
     }
     return render(request , "about.html",output)
-
+def carData(request):
+    data = Car(car_name="Ayush",speed="145KM")
+    data.save()
+    if request.method == 'POST':
+         car_name = request.GET.get("car_name")
+         speed = request.GET.get("car_name")
+    getData = Car.objects.all()[0]
+    getData.car_name = car_name
+    getData.speed = speed
+    getData.save()
+    print(getData)
+    return HttpResponse(getData)

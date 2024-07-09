@@ -26,7 +26,8 @@ urlpatterns = [
     path("formdata",views.formData , name="formdata"),
     path("course/<int:courseid>",views.course,name="course"),
     path("item/<int:id>",views.item,name="item"),
-    path("form",views.userpage,name="form")
+    path("form",views.userpage,name="form"),
+    path("carData",views.carData,name="carData")
 ]
 
 if settings.DEBUG:
