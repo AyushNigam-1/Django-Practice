@@ -93,7 +93,10 @@ def carData(request):
     if request.method == 'POST':
          car_name = request.GET.get("car_name")
          speed = request.GET.get("car_name")
+         id = request.GET.get("id")
+         
     getData = Car.objects.all()[0]
+    todel = Car.objects.get(id = id).delete()
     getData.car_name = car_name
     getData.speed = speed
     getData.save()
