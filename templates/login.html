@@ -8,6 +8,11 @@
 </head>
 
 <body>
+    {% if messages %}
+    {% for msg in messages %}
+    <div>{{msg}}</div>
+    {% endfor %}
+    {% endif %}
     <form action="{% url 'register' %}" method="post">
         {% csrf_token %}
         <input type="text" name="first_name">

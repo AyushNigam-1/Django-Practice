@@ -6,6 +6,7 @@ from news.models import News
 from django.core.paginator import Paginator
 from django.core.mail import send_mail , EmailMultiAlternatives
 from django.contrib.auth.models import User
+from django.contrib import messages
 def userpage(request):
     print("called" , request.POST.get('icon'))
     if request.method == 'POST':
@@ -113,6 +114,9 @@ def register(request):
         last_name = request.POST.get('last_name')
         email = request.POST.get('email')
         password = request.POST.get('password')
+        user = User.objects.get(email=email)
+        if user.exists():
+            messages.info(request , 'User Already Exists')
         user = User.objects.create(first_name = first_name,
 last_name = last_name,
 email = email,
@@ -120,9 +124,11 @@ email = email,
         user.set_password(password)
         try:
          user.save()
-         url = "/about?output={}".format("success")
+         url = "/login?output={}".format("success")
+         messages.info(request , 'User Created Successfully')
          return redirect(url)
         except :
-         url = "/register?output={}".format("error")
+         url = "/login?output={}".format("error")
+         messages.info(request , 'Something went wrong')
          return redirect(url)
             
