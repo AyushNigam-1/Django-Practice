@@ -27,6 +27,8 @@ urlpatterns = [
     path("course/<int:courseid>",views.course,name="course"),
     path("item/<int:id>",views.item,name="item"),
     path("form",views.userpage,name="form"),
+    path("register",views.register,name="register"),
+    path("login",views.login,name="login"),
     path("carData",views.carData,name="carData")
 ]
 

@@ -5,6 +5,7 @@ from service.models import Service , Car
 from news.models import News
 from django.core.paginator import Paginator
 from django.core.mail import send_mail , EmailMultiAlternatives
+from django.contrib.auth.models import User
 def userpage(request):
     print("called" , request.POST.get('icon'))
     if request.method == 'POST':
@@ -15,22 +16,22 @@ def userpage(request):
     return render(request , 'userForm.html')
 
 def homepage(request):
-    send_mail(
-        "Testing mail",
-        "Here is the message",
-        "ayushnigam843@gmail.com",
-        ["ayushnigam518@gmail.com"],
-        fail_silently=False 
-    )
-    mail = EmailMultiAlternatives(
-        "Testing mail",
-        "<h1>Wow bro<h2>",
-        "ayushnigam843@gmail.com",
-        ["ayushnigam518@gmail.com","ayushnigam35@gmail.com"],
-        fail_silently=False 
-    )
-    mail.content_subtype = "html"
-    mail.send()
+    # send_mail(
+    #     "Testing mail",
+    #     "Here is the message",
+    #     "ayushnigam843@gmail.com",
+    #     ["ayushnigam518@gmail.com"],
+    #     fail_silently=False 
+    # )
+    # mail = EmailMultiAlternatives(
+    #     "Testing mail",
+    #     "<h1>Wow bro<h2>",
+    #     "ayushnigam843@gmail.com",
+    #     ["ayushnigam518@gmail.com","ayushnigam35@gmail.com"],
+    #     fail_silently=False 
+    # )
+    # mail.content_subtype = "html"
+    # mail.send()
     serviceData = Service.objects.all().order_by('-service_title')
     paginator = Paginator(serviceData,2)
     page_num = request.GET.get('page')
@@ -102,3 +103,26 @@ def carData(request):
     getData.save()
     print(getData)
     return HttpResponse(getData)
+
+def login(request):
+    return render(request , 'login.html')
+
+def register(request):
+    if request.method == 'POST':
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user = User.objects.create(first_name = first_name,
+last_name = last_name,
+email = email,
+)
+        user.set_password(password)
+        try:
+         user.save()
+         url = "/about?output={}".format("success")
+         return redirect(url)
+        except :
+         url = "/register?output={}".format("error")
+         return redirect(url)
+            
