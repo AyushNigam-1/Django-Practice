@@ -8,6 +8,9 @@ from django.core.mail import send_mail , EmailMultiAlternatives
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
+
+@login_required(login_url='register')
 def userpage(request):
     print("called" , request.POST.get('icon'))
     if request.method == 'POST':
@@ -106,9 +109,9 @@ def carData(request):
     print(getData)
     return HttpResponse(getData)
 
-def logot (request):
-    logot()
-    return('register')
+def logout (request):
+    logout()
+    return render(request , 'register.html')
 
 def login(request):
     if request.method == 'POST':
