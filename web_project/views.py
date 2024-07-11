@@ -7,6 +7,7 @@ from django.core.paginator import Paginator
 from django.core.mail import send_mail , EmailMultiAlternatives
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth import authenticate
 def userpage(request):
     print("called" , request.POST.get('icon'))
     if request.method == 'POST':
@@ -105,7 +106,28 @@ def carData(request):
     print(getData)
     return HttpResponse(getData)
 
+def logot (request):
+    logot()
+    return('register')
+
 def login(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        
+        if not User.objects.filter(email = email).exists():
+            messages.error(request , 'User not found')
+            return render(request , 'login.html')
+        
+        user = authenticate(email=email , password = password)
+        
+        if user is None:
+            messages.error(request , 'Authentication Failed')
+            return render(request , 'login.html')
+        else:
+            login(user)
+            messages.error(request , 'login.html')
+            
     return render(request , 'login.html')
 
 def register(request):
@@ -118,17 +140,18 @@ def register(request):
         if user.exists():
             messages.info(request , 'User Already Exists')
         user = User.objects.create(first_name = first_name,
-last_name = last_name,
-email = email,
-)
+        last_name = last_name,
+        email = email,
+        )
         user.set_password(password)
         try:
          user.save()
-         url = "/login?output={}".format("success")
+         url = "/register?output={}".format("success")
          messages.info(request , 'User Created Successfully')
          return redirect(url)
         except :
-         url = "/login?output={}".format("error")
+         url = "/register?output={}".format("error")
          messages.info(request , 'Something went wrong')
          return redirect(url)
+    return render(request , 'register.html')
             
