@@ -93,7 +93,7 @@ def item(request , id):
         "record":record
     }
     return render(request , "about.html",output)
-def carData(request):
+def savecar(request):
     data = Car(car_name="Ayush",speed="145KM")
     data.save()
     if request.method == 'POST':
@@ -108,6 +108,12 @@ def carData(request):
     getData.save()
     print(getData)
     return HttpResponse(getData)
+
+def getcar(request):
+    car = Car.objects.filter(speed__gte = 50)
+    # car = Car.objects.filter(speed__lte = 50)
+    
+    return HttpResponse(request ,{"car":car} )
 
 def logout (request):
     logout()
