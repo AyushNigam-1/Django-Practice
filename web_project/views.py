@@ -111,13 +111,15 @@ def savecar(request):
     return HttpResponse(getData)
 
 def getcar(request):
-    car = Car.objects.aggregate(Sum('speed'))
-    car = Car.objects.aggregate(Avg('speed'))
+    # car = Car.objects.aggregate(Sum('speed'))
+    # car = Car.objects.aggregate(Avg('speed'))
+    car = Car.objects.values('speed').annotate(Count('speed'))
+    car = Car.objects.values('speed','car_name').annotate(Count('speed'),Count('car_name'))
     # car = Car.objects.aggregate(Max('speed'))
     # car = Car.objects.aggregate(speed__gte = 50)
     # car = Car.objects.filter(speed__lte = 50)
-    
-    return render(request ,'header.html',{"car":car} )
+    print(car)
+    return render(request ,'header.html')
 
 def logout (request):
     logout()
