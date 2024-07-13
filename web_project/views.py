@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
+from django.db.models import *
 
 @login_required(login_url='register')
 def userpage(request):
@@ -110,10 +111,13 @@ def savecar(request):
     return HttpResponse(getData)
 
 def getcar(request):
-    car = Car.objects.filter(speed__gte = 50)
+    car = Car.objects.aggregate(Sum('speed'))
+    car = Car.objects.aggregate(Avg('speed'))
+    # car = Car.objects.aggregate(Max('speed'))
+    # car = Car.objects.aggregate(speed__gte = 50)
     # car = Car.objects.filter(speed__lte = 50)
     
-    return HttpResponse(request ,{"car":car} )
+    return render(request ,'header.html',{"car":car} )
 
 def logout (request):
     logout()

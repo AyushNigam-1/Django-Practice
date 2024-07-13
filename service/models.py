@@ -15,7 +15,7 @@ class Car(models.Model):
         return self.car_name
     
     class Meta:
-        ordering = ['car']
+        # ordering = ['car']
         verbose_name = 'car'
 
 

@@ -27,9 +27,10 @@ urlpatterns = [
     path("course/<int:courseid>",views.course,name="course"),
     path("item/<int:id>",views.item,name="item"),
     path("form",views.userpage,name="form"),
+    path("car",views.getcar,name="car"),
     path("register",views.register,name="register"),
     path("login",views.login,name="login"),
-    path("carData",views.carData,name="carData")
+    # path("carData",views.carData,name="carData")
 ]
 
 if settings.DEBUG:
