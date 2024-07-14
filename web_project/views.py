@@ -10,6 +10,9 @@ from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.db.models import *
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 @login_required(login_url='register')
 def userpage(request):
